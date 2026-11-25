@@ -117,7 +117,7 @@ with open(raw_file, "r", encoding="utf-8-sig", newline="") as source:
 
     try:
         with os.fdopen(fd, "w", encoding="utf-8", newline="") as destination:
-            writer = csv.writer(destination)
+            writer = csv.writer(destination, lineterminator="\n")
             writer.writerow(clean_columns)
 
             for row in reader:
