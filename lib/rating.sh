@@ -35,7 +35,7 @@ recommend_by_rating() {
 
     # Create temporary file for filtered movies
     local temp_file
-    temp_file=$(mktemp)
+    temp_file=$(mktemp) || return 1
 
     # Filter movies with rating >= minimum rating
     awk -F',' -v min="$minimum_rating" '
@@ -52,6 +52,7 @@ recommend_by_rating() {
     fi
 
     # Display results sorted by rating (highest first)
+    echo
     echo "Movies rated $minimum_rating or higher:"
     echo
     printf "Rating\tTitle\tGenre\tYear\tDirector\n"
